@@ -1,4 +1,6 @@
-﻿using Infrastructure.DbContexts;
+﻿using Domain.Interfaces;
+using Infrastructure.DbContexts;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -14,6 +16,8 @@ public static class DependencyInjection
         services.AddHealthChecks().AddNpgSql(connectionString, "StudentManagementDB");
 
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+        services.AddScoped<IStudentRepository, StudentRepository>();
 
         return services;
     }

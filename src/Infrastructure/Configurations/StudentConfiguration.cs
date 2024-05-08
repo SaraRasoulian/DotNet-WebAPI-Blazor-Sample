@@ -5,7 +5,7 @@ using Domain.ValueObjects;
 
 namespace Infrastructure.Configurations;
 
-public class CustomerConfiguration : IEntityTypeConfiguration<Student>
+public class StudentConfiguration : IEntityTypeConfiguration<Student>
 {
     public void Configure(EntityTypeBuilder<Student> builder)
     {
