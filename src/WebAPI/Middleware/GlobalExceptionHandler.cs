@@ -1,5 +1,5 @@
-﻿using Application.ResponseModels;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using Application.ResponseModels;
 using System.Net;
 
 namespace WebAPI.Middleware;
