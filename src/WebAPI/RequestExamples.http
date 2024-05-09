@@ -1,0 +1,9 @@
+@WebAPI_HostAddress = https://localhost:7120
+
+### Get All Students
+GET {{WebAPI_HostAddress}}/api/students/
+Accept: application/json
+
+### Get Student By Id
+GET {{WebAPI_HostAddress}}/api/students/1
+Accept: application/json
