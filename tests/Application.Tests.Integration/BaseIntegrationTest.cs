@@ -1,5 +1,5 @@
-﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 
 namespace Application.Tests.Integration;
 

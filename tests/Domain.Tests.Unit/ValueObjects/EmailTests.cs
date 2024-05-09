@@ -1,4 +1,5 @@
 ﻿using Domain.ValueObjects;
+
 namespace Domain.UnitTests.ValueObjects;
 
 public class EmailTests
