@@ -1,4 +1,4 @@
-﻿namespace Application.Tests.Unit.StudentHandlers;
+﻿namespace Application.Tests.Unit.StudentHandlersTests;
 
 public class GetAllStudentsHandlerTests
 {
