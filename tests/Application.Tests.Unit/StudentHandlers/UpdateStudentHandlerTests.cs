@@ -3,7 +3,7 @@
 public class UpdateStudentHandlerTests
 {
     [Fact]
-    public async Task Handle_ValidUpdate_ReturnsStudentResponse()
+    public async Task UpdateStudentHandler_Returns_StudentResponse()
     {
         // Arrange
         var customerId = 1;

@@ -3,7 +3,7 @@
 public class GetAllStudentsHandlerTests
 {
     [Fact]
-    public async Task Handle_Returns_Students()
+    public async Task GetAllStudentsHandler_Returns_Students()
     {
         // Arrange
         var fakeRepository = Substitute.For<IStudentRepository>();

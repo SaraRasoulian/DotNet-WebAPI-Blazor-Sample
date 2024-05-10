@@ -14,6 +14,7 @@ public class CreateStudentHandler : IRequestHandler<CreateStudentCommand, Studen
     {
         _studentRepository = studentRepository;
     }
+
     public async Task<StudentResponse> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
     {
         Student toAdd = request.Adapt<Student>();

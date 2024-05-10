@@ -14,10 +14,11 @@ public class UpdateStudentHandler : IRequestHandler<UpdateStudentCommand, Studen
     {
         _studentRepository = studentRepository;
     }
+
     public async Task<StudentResponse> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
     {
         var student = await _studentRepository.GetById(request.Id);
-        if (student is null) throw new Exception("Student Not Found");
+        if (student is null) throw new Exception("Student not found");
 
         Student toUpdate = request.Adapt<Student>();
 
