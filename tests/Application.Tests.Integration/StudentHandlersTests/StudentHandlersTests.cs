@@ -4,7 +4,7 @@ using Domain.ValueObjects;
 
 namespace Application.Tests.Integration.StudentHandlersTests;
 
-public class StudentHandlersTests : BaseIntegrationTest
+public class StudentHandlersTests : BaseHandlerTest
 {
     public StudentHandlersTests(IntegrationTestWebApplicationFactory factory) : base(factory) { }
 
