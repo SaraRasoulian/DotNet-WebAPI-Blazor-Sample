@@ -49,4 +49,12 @@ public class StudentsController : ControllerBase
         var response = await _mediator.Send(command);
         return Ok(response);
     }
+
+    [HttpDelete("{studentId:long}")]
+    public async Task<IActionResult> Delete(long studentId)
+    {
+        var command = new DeleteStudentCommand(studentId);
+        await _mediator.Send(command);
+        return Ok();
+    }
 }
