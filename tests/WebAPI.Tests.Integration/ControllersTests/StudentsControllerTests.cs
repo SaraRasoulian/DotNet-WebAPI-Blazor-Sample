@@ -88,4 +88,27 @@ public class StudentsControllerTests : BaseControllerTest
         Assert.Equal(updateRequest.BirthDate, updatedStudent.BirthDate);
         Assert.Equal(updateRequest.GitHubUsername, updatedStudent.GitHubUsername);
     }
+
+    [Fact]
+    public async Task Delete_With_Valid_StudentId_Returns_OK()
+    {
+        // Arrange
+        // Create a new student
+        CreateStudentRequest request = new CreateStudentRequest(
+            FirstName: "Arsh",
+            LastName: "Mirzaee",
+            Email: new Email("arsh@gmail.com"),
+            BirthDate: new DateOnly(1984, 06, 01),
+            GitHubUsername: "arsh84");
+
+        var postResponse = await _httpClient.PostAsJsonAsync("/api/students", request);
+        StudentResponse addedStudent = await postResponse.Content.ReadFromJsonAsync<StudentResponse>();
+
+        // Act
+        var deleteResponse = await _httpClient.DeleteAsync("/api/students/" + addedStudent.Id);
+
+        // Assert
+        postResponse.EnsureSuccessStatusCode();
+        deleteResponse.EnsureSuccessStatusCode();
+    }
 }
