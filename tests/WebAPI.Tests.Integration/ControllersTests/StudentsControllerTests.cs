@@ -48,4 +48,44 @@ public class StudentsControllerTests : BaseControllerTest
         Assert.Equal(request.BirthDate, studentResponse.BirthDate);
         Assert.Equal(request.GitHubUsername, studentResponse.GitHubUsername);
     }
+        
+    [Fact]
+    public async void Put_Returns_Ok_With_StudentResponse()
+    {
+        // Arrange
+        // Create a new student
+        CreateStudentRequest createRequest = new CreateStudentRequest(
+            FirstName: "Diana",
+            LastName: "Moradi",
+            Email: new Email("diana@gmail.com"),
+            BirthDate: new DateOnly(2000, 1, 1),
+            GitHubUsername: "diana"
+        );
+
+        var postResponse = await _httpClient.PostAsJsonAsync("/api/students", createRequest);
+        var addedStudent = await postResponse.Content.ReadFromJsonAsync<StudentResponse>();
+
+        UpdateStudentRequest updateRequest = new UpdateStudentRequest(
+            Id: addedStudent.Id,
+            FirstName: "Diana",
+            LastName: "Rasouli",
+            Email: new Email("dia@gmail.com"),
+            BirthDate: new DateOnly(1900, 1, 1),
+            GitHubUsername: "diana-900");
+
+        // Act
+        var updateResponse = await _httpClient.PutAsJsonAsync("/api/students/" + addedStudent.Id, updateRequest);
+
+        // Assert
+        updateResponse.EnsureSuccessStatusCode();
+        postResponse.EnsureSuccessStatusCode();
+
+        var updatedStudent = await updateResponse.Content.ReadFromJsonAsync<StudentResponse>();
+
+        Assert.Equal(updateRequest.FirstName, updatedStudent.FirstName);
+        Assert.Equal(updateRequest.LastName, updatedStudent.LastName);
+        Assert.Equal(updateRequest.Email.Value, updatedStudent.Email.Value);
+        Assert.Equal(updateRequest.BirthDate, updatedStudent.BirthDate);
+        Assert.Equal(updateRequest.GitHubUsername, updatedStudent.GitHubUsername);
+    }
 }
