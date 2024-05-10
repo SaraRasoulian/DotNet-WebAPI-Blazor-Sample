@@ -1,11 +1,4 @@
-﻿using Application.Students.Handlers.QueryHandlers;
-using Application.Students.Queries;
-using Domain.Interfaces;
-using Domain.Entities;
-using NSubstitute;
-using Bogus;
-
-namespace Application.Tests.Unit.StudentHandlers;
+﻿namespace Application.Tests.Unit.StudentHandlers;
 
 public class GetStudentByIdHandlerTests
 {

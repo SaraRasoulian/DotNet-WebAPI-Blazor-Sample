@@ -1,11 +1,4 @@
-﻿using Application.Students.Handlers.CommandHandlers;
-using Application.Students.Commands;
-using Domain.ValueObjects;
-using Domain.Interfaces;
-using Domain.Entities;
-using NSubstitute;
-
-namespace Application.Tests.Unit.Students.Handlers;
+﻿namespace Application.Tests.Unit.StudentHandlers;
 
 public class UpdateStudentHandlerTests
 {

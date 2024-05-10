@@ -2,7 +2,7 @@
 using Application.Students.Queries;
 using Domain.ValueObjects;
 
-namespace Application.Tests.Integration.Students;
+namespace Application.Tests.Integration.StudentHandlers;
 
 public class StudentHandlersTests : BaseIntegrationTest
 {

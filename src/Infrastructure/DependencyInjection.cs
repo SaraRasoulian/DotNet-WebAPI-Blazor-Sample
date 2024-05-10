@@ -1,8 +1,8 @@
-﻿using Domain.Interfaces;
-using Infrastructure.DbContexts;
-using Infrastructure.Repositories;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Infrastructure.Repositories;
+using Infrastructure.DbContexts;
+using Domain.Interfaces;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

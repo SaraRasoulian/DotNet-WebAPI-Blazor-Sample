@@ -1,5 +1,5 @@
-﻿using Application.ResponseModels;
-using Application.Students.Queries;
+﻿using Application.Students.Queries;
+using Application.ResponseModels;
 using Domain.Interfaces;
 using Mapster;
 using MediatR;

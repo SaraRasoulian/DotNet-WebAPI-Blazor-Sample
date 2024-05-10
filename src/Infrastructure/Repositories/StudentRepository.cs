@@ -1,8 +1,8 @@
-﻿using Domain.Entities;
-using Domain.Interfaces;
-using Domain.ValueObjects;
+﻿using Microsoft.EntityFrameworkCore;
 using Infrastructure.DbContexts;
-using Microsoft.EntityFrameworkCore;
+using Domain.ValueObjects;
+using Domain.Interfaces;
+using Domain.Entities;
 
 namespace Infrastructure.Repositories
 {

@@ -1,12 +1,4 @@
-﻿using Application.Students.Handlers.QueryHandlers;
-using Application.Students.Queries;
-using Application.ResponseModels;
-using Domain.Interfaces;
-using Domain.Entities;
-using NSubstitute;
-using Bogus;
-
-namespace Application.Tests.Unit.Students.Handlers;
+﻿namespace Application.Tests.Unit.StudentHandlers;
 
 public class GetAllStudentsHandlerTests
 {

@@ -1,7 +1,7 @@
-﻿using Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Domain.ValueObjects;
+using Domain.Entities;
 
 namespace Infrastructure.Configurations;
 

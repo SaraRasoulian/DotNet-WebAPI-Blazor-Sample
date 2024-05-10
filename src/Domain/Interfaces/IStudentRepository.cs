@@ -1,5 +1,6 @@
-﻿using Domain.Entities;
-using Domain.ValueObjects;
+﻿using Domain.ValueObjects;
+using Domain.Entities;
+
 namespace Domain.Interfaces;
 
 public interface IStudentRepository
