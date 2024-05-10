@@ -32,4 +32,13 @@ public class StudentsController : ControllerBase
         var response = await _mediator.Send(command);
         return Ok(response);
     }
+
+    [HttpPut("{studentId:long}")]
+    public async Task<IActionResult> Put(long studentId, [FromBody] UpdateStudentRequest request)
+    {
+        var command = request.Adapt<UpdateStudentCommand>();
+        if (studentId != command.Id) return BadRequest();
+        var response = await _mediator.Send(command);
+        return Ok(response);
+    }
 }
