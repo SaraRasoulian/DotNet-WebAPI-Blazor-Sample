@@ -23,6 +23,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="Application.Tests.Integration"/>
     <InternalsVisibleTo Include="WebAPI.Tests.Integration"/>
+    <InternalsVisibleTo Include="WebAPI.Tests.Acceptance"/>
   </ItemGroup>
 
 </Project>
