@@ -6,9 +6,9 @@ public class UpdateStudentHandlerTests
     public async Task UpdateStudentHandler_Returns_StudentResponse()
     {
         // Arrange
-        var customerId = 1;
+        var studentId = 1;
         var updateCommand = new UpdateStudentCommand(
-            Id: customerId,
+            Id: studentId,
             FirstName: "Sara",
             LastName: "Rasoulian",
             BirthDate: new DateOnly(1900, 1, 1),
@@ -17,7 +17,7 @@ public class UpdateStudentHandlerTests
 
         var existingStudent = new Student
         {
-            Id = customerId,
+            Id = studentId,
             FirstName = "Sara",
             LastName = "Rasoulian",
             Email = new Email("sara@gmail.com"),
@@ -26,7 +26,7 @@ public class UpdateStudentHandlerTests
         };
 
         var mockRepository = Substitute.For<IStudentRepository>();
-        mockRepository.GetById(customerId).Returns(existingStudent);
+        mockRepository.GetById(studentId).Returns(existingStudent);
 
         var handler = new UpdateStudentHandler(mockRepository);
 
