@@ -1,0 +1,113 @@
+﻿@page "/students/edit/{studentId}"
+@inject NavigationManager NavigationManager
+@inject StudentService studentService
+@inject IJSRuntime JsRuntime
+
+<PageTitle>Edit Student</PageTitle>
+@if (student is not null)
+{
+    <div class="content-container">
+        <div class="title-wrapper">
+            <NavLink href="/students" class="back-to-list-wrapper" data-toggle="tooltip"
+                     data-placement="top" title="Return to list">
+                <div class="back-to-list">
+                    <img src="images/back.png" class="back-icon" alt="" />
+                </div>
+            </NavLink>
+            <h4>Edit Student</h4>
+        </div>
+        <hr class="line" />
+
+        <div class="content">
+            <div class="form-container">
+
+                <EditForm OnValidSubmit="@EditStudent" Model="@student">
+                    <DataAnnotationsValidator />
+
+                    <div class="row g-3">
+                        <div class="col-lg-8 col-md-12 col-sm-12">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <InputText @bind-Value="student.FirstName" maxlength="50" class="form-control" id="firstName" placeholder="First Name"></InputText>
+                            <ValidationMessage For="()=>student.FirstName"></ValidationMessage>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-8 col-md-12 col-sm-12">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <InputText @bind-Value="student.LastName" maxlength="50" class="form-control" id="lastName" placeholder="Last Name"></InputText>
+                            <ValidationMessage For="()=>student.LastName"></ValidationMessage>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-8 col-md-12 col-sm-12">
+                            <label for="email" class="form-label">Email</label>
+                            <InputText @bind-Value="student.Email.Value" class="form-control" id="email" placeholder="Email"></InputText>
+                            <ValidationMessage For="()=>student.Email.Value"></ValidationMessage>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-8 col-md-12 col-sm-12">
+                            <label for="dateOfBirth" class="form-label">Birth Date</label>
+                            <DateInput @bind-Value="@student.BirthDate" TValue="DateOnly" EnableMinMax="true" Min="@minBirthDate" Max="@maxBirthDate" class="form-control" id="dateOfBirth" placeholder="Birth Date" />
+                            <ValidationMessage For="()=>student.BirthDate"></ValidationMessage>
+                        </div>
+                    </div>
+
+
+                    <div class="row g-3">
+                        <div class="col-lg-8 col-md-12 col-sm-12">
+                            <label for="gitHubUsername" class="form-label">GitHub Username</label>
+                            <InputText @bind-Value="student.GitHubUsername" class="form-control" id="gitHubUsername" placeholder="GitHub Username"></InputText>
+                            <ValidationMessage For="()=>student.GitHubUsername"></ValidationMessage>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+                            <div class="button-container">
+                                <button class="btn btn-save" type="submit">Save</button>
+                                <NavLink href="/students" class="btn btn-cancel">Cancel</NavLink>
+                            </div>
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <Spinner Class="me-3" Type="SpinnerType.Dots" Color="SpinnerColor.Secondary" />
+}
+
+@code {
+    private DateOnly minBirthDate = DateOnly.FromDateTime(DateTime.Now).AddYears(-140);
+    private DateOnly maxBirthDate = DateOnly.FromDateTime(DateTime.Now).AddYears(-18);
+
+    private StudentDto student;
+
+    [Parameter]
+    public string studentId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        student = await studentService.Get(studentId);
+    }
+
+    private async void EditStudent()
+    {
+        var response = await studentService.Edit(studentId, student);
+        if (response.IsSuccessStatusCode)
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Student edited!");
+            NavigationManager.NavigateTo("/students");
+        }
+        else
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Something went wrong!");
+        }
+    }
+}
