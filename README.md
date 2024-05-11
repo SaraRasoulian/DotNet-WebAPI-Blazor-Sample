@@ -41,7 +41,7 @@ Run the following command in project directory:
 docker-compose up -d
 ```
 
-Docker compose includes 4 services:
+Docker compose in this application includes 4 services:
 
 - Web API application will be listening at `http://localhost:5000`
 
