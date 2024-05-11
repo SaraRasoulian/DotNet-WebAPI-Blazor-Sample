@@ -1,0 +1,103 @@
+﻿@page "/students/add"
+@inject NavigationManager NavigationManager
+@inject StudentService studentService
+@inject IJSRuntime JsRuntime
+
+<PageTitle>Add Student</PageTitle>
+<div class="content-container">
+    <div class="title-wrapper">
+        <NavLink href="/students" class="back-to-list-wrapper" data-toggle="tooltip"
+                 data-placement="top" title="Return to list">
+            <div class="back-to-list">
+                <img src="images/back.png" class="back-icon" alt="" />
+            </div>
+        </NavLink>
+        <h4>Add Student</h4>
+    </div>
+    <hr class="line" />
+
+    <div class="content">
+        <div class="form-container">
+            <EditForm OnValidSubmit="@AddStudent" Model="@newStudent">
+                <DataAnnotationsValidator />
+
+                <div class="row g-3">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <InputText @bind-Value="newStudent.FirstName" maxlength="50" class="form-control" id="firstName" placeholder="First Name"></InputText>
+                        <ValidationMessage For="()=>newStudent.FirstName"></ValidationMessage>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <InputText @bind-Value="newStudent.LastName" maxlength="50" class="form-control" id="lastName" placeholder="Last Name"></InputText>
+                        <ValidationMessage For="()=>newStudent.LastName"></ValidationMessage>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <label for="email" class="form-label">Email</label>
+                        <InputText @bind-Value="newStudent.Email.Value" class="form-control" id="email" placeholder="Email" ></InputText>
+                        <ValidationMessage For="()=>newStudent.Email.Value"></ValidationMessage>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <label for="dateOfBirth" class="form-label">Birth Date</label>
+                        <DateInput @bind-Value="@newStudent.BirthDate" TValue="DateOnly" EnableMinMax="true" Min="@minBirthDate" Max="@maxBirthDate" class="form-control" id="dateOfBirth" placeholder="Birth Date" />
+                        <ValidationMessage For="()=>newStudent.BirthDate"></ValidationMessage>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <label for="gitHubUsername" class="form-label">GitHub Username</label>
+                        <InputText @bind-Value="newStudent.GitHubUsername" class="form-control" id="gitHubUsername" placeholder="GitHub Username"></InputText>
+                        <ValidationMessage For="()=>newStudent.GitHubUsername"></ValidationMessage>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+                        <div class="button-container">
+                            <button class="btn btn-save" type="submit">Add</button>
+                            <NavLink href="/students" class="btn btn-cancel">Cancel</NavLink>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    private DateOnly minBirthDate = DateOnly.FromDateTime(DateTime.Now).AddYears(-140);
+    private DateOnly maxBirthDate = DateOnly.FromDateTime(DateTime.Now).AddYears(-18);
+    private StudentDto newStudent = new StudentDto();
+    private List<string> ErrorList = new List<string>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        newStudent.BirthDate = maxBirthDate;
+        newStudent.Email = new Email();
+    }
+
+    private async Task AddStudent()
+    {
+        var response = await studentService.Add(newStudent);
+        if (response.IsSuccessStatusCode)
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Student added!");
+            NavigationManager.NavigateTo("/students");
+        }
+        else
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Something went wrong!");
+        }
+    }
+}
