@@ -1,0 +1,101 @@
+﻿@page "/students/view/{studentId}"
+@inject NavigationManager NavigationManager
+@inject StudentService studentService
+
+<PageTitle>View Student</PageTitle>
+@if (student is not null)
+{
+    <div class="content-container">
+        <div class="view-wrapper">
+            <div class="title-wrapper">
+                <NavLink href="/students" class="back-to-list-wrapper" data-toggle="tooltip"
+                         data-placement="top" title="Return to list">
+                    <div class="back-to-list">
+                        <img src="images/back.png" class="back-icon" alt="" />
+                    </div>
+                </NavLink>
+                <h4>View Student</h4>
+
+                <div class="buttons-wrapper">
+                    <NavLink href="@($"/students/edit/{studentId}")" class="list-button" data-toggle="tooltip" data-placement="top"
+                             title="Edit">
+                        <img src="images/edit.svg" class="list-button-icon" alt="" />
+                    </NavLink>
+                    <NavLink href="@($"/students/delete/{studentId}")" class="list-button" data-toggle="tooltip" data-placement="top" title="Delete">
+                        <img src="images/delete.svg" class="list-button-icon" alt="" />
+                    </NavLink>
+                </div>
+            </div>
+            <hr class="line" />
+
+            <div class="content">
+                <div class="form-container">
+                    <div>
+                        <div class="row g-3">
+                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                <div class="view-item-wrapper">
+                                    <span>First Name</span>
+                                    <p>@student.FirstName</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                <div class="view-item-wrapper">
+                                    <span>Last Name</span>
+                                    <p>@student.LastName</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                <div class="view-item-wrapper">
+                                    <span>Email</span>
+                                    <p>@student.Email.Value</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                <div class="view-item-wrapper">
+                                    <span>Birth Date</span>
+                                    <p>@student.BirthDate</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                <div class="view-item-wrapper">
+                                    <span>GitHub Username</span>
+                                    <p>@student.GitHubUsername</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+else
+{
+    <Spinner Class="me-3" Type="SpinnerType.Dots" Color="SpinnerColor.Secondary" />
+}
+
+@code {
+    private StudentDto student;
+
+    [Parameter]
+    public string studentId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        student = await studentService.Get(studentId);
+    }
+}
