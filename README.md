@@ -1,5 +1,5 @@
 ## Student Management Application
-A full-stack application with a backend ASP.NET Core Web API project and a frontend Blazor Web Assembly project.
+A sample full-stack application with a backend ASP.NET Core Web API project and a frontend Blazor Web Assembly project.
 
 ![Student](https://github.com/SaraRasoulian/DotNet-WebAPI-Blazor-Sample/assets/51083712/1488e7de-c296-4b38-be82-75995e2c4387)
 
