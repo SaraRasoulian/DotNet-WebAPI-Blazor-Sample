@@ -1,0 +1,11 @@
+global using Application.Students.Handlers.CommandHandlers;
+global using Application.Students.Handlers.QueryHandlers;
+global using Application.Students.Commands;
+global using Application.Students.Queries;
+global using Application.ResponseModels;
+global using Domain.ValueObjects;
+global using Domain.Interfaces;
+global using Domain.Entities;
+global using NSubstitute;
+global using Xunit;
+global using Bogus;
