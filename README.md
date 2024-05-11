@@ -1,9 +1,11 @@
 ## Student Management Application
 A full-stack application with a backend ASP.NET Core Web API project and a frontend Blazor Web Assembly project.
 
-This repository is intended for demonstrating best practices in software development. In real-world applications, these practices should be selected based on the specific requirements of each project.
+![Student](https://github.com/SaraRasoulian/DotNet-WebAPI-Blazor-Sample/assets/51083712/1488e7de-c296-4b38-be82-75995e2c4387)
 
-## Features & Technologies
+
+
+## Technology Stack
   -	ASP.NET Core Web API -v8
   - Entity Framework Core -v8
   - DDD (Domain-Driven Design)
@@ -29,6 +31,10 @@ This repository is intended for demonstrating best practices in software develop
   - __FluentValidation__ for server-side validation
   - __Mapster__ for object mapping
   - __Blazor.Bootstrap__ for implementing user-interface
+
+
+This repository is intended for demonstrating best practices in software development. In real-world applications, these practices should be selected based on the specific requirements of each project.
+
 
       
 ## Get started
