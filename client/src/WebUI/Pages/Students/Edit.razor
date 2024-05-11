@@ -60,7 +60,7 @@
                     <div class="row g-3">
                         <div class="col-lg-8 col-md-12 col-sm-12">
                             <label for="gitHubUsername" class="form-label">GitHub Username</label>
-                            <InputText @bind-Value="student.GitHubUsername" class="form-control" id="gitHubUsername" placeholder="GitHub Username"></InputText>
+                            <InputText @bind-Value="student.GitHubUsername" maxlength="40" class="form-control" id="gitHubUsername" placeholder="GitHub Username"></InputText>
                             <ValidationMessage For="()=>student.GitHubUsername"></ValidationMessage>
                         </div>
                     </div>

@@ -56,7 +56,7 @@
                 <div class="row g-3">
                     <div class="col-lg-8 col-md-12 col-sm-12">
                         <label for="gitHubUsername" class="form-label">GitHub Username</label>
-                        <InputText @bind-Value="newStudent.GitHubUsername" class="form-control" id="gitHubUsername" placeholder="GitHub Username"></InputText>
+                        <InputText @bind-Value="newStudent.GitHubUsername" maxlength="40" class="form-control" id="gitHubUsername" placeholder="GitHub Username"></InputText>
                         <ValidationMessage For="()=>newStudent.GitHubUsername"></ValidationMessage>
                     </div>
                 </div>
