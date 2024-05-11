@@ -1,6 +1,6 @@
-﻿using TechTalk.SpecFlow;
-using WebAPI.Tests.Acceptance.Drivers;
+﻿using WebAPI.Tests.Acceptance.Drivers;
 using WebAPI.Tests.Acceptance.Dtos;
+using TechTalk.SpecFlow;
 
 namespace WebAPI.Tests.Acceptance.StepDefinitions;
 
@@ -19,7 +19,7 @@ public class StudentManagementSteps
     public void GivenplatformHas0Students(string numberOfStudents)
     {
         List<StudentDto> studentResponse = _driver.GetAllStudents();
-        Assert.Equal(studentResponse?.Count, int.Parse(numberOfStudents));
+        Assert.Equal(int.Parse(numberOfStudents), studentResponse?.Count);
     }
 
     [When(@"user creates a student with following data by sending 'Create Student Command' through API")]
@@ -34,14 +34,14 @@ public class StudentManagementSteps
     {
         List<StudentDto> studentResponse = _driver.GetAllStudents();
 
-        Assert.Equal(studentResponse?.Count, int.Parse(numberOfStudents));
+        Assert.Equal(int.Parse(numberOfStudents), studentResponse?.Count);
 
         var expectedStudentResponse = _driver.ParseCreateStudentData(expectedStudent);
-        Assert.Equal(studentResponse[0].FirstName, expectedStudentResponse.FirstName);
-        Assert.Equal(studentResponse[0].LastName, expectedStudentResponse.LastName);
-        Assert.Equal(studentResponse[0].Email.Value, expectedStudentResponse.Email.Value);
-        Assert.Equal(studentResponse[0].BirthDate, expectedStudentResponse.BirthDate);
-        Assert.Equal(studentResponse[0].GitHubUsername, expectedStudentResponse.GitHubUsername);
+        Assert.Equal(expectedStudentResponse.FirstName, studentResponse[0].FirstName);
+        Assert.Equal(expectedStudentResponse.LastName, studentResponse[0].LastName);
+        Assert.Equal(expectedStudentResponse.Email.Value, studentResponse[0].Email.Value);
+        Assert.Equal(expectedStudentResponse.BirthDate, studentResponse[0].BirthDate);
+        Assert.Equal(expectedStudentResponse.GitHubUsername, studentResponse[0].GitHubUsername);
     }
 
     [When(@"user creates another student with following data by sending 'Create Student Command' through API")]
@@ -55,14 +55,14 @@ public class StudentManagementSteps
     public void ThenUserMustGetInternalServerError(string statusCode)
     {
         var createSameStudentResponse = _scenarioContext.Get<HttpResponseMessage?>("createSameStudentResponse");
-        Assert.Equal((int)createSameStudentResponse.StatusCode, int.Parse(statusCode));
+        Assert.Equal(int.Parse(statusCode), (int)createSameStudentResponse.StatusCode);
     }
 
     [When(@"user updates student by email ""(.*)"" with following data")]
     public void ThenUserUpdateStudent(string email, Table student)
     {
         List<StudentDto> studentResponse = _driver.GetAllStudents();
-        Assert.Equal(studentResponse[0].Email.Value, email);
+        Assert.Equal(email, studentResponse[0].Email.Value);
 
         HttpResponseMessage updateResponse = _driver.UpdateStudent(studentResponse[0].Id, student);
         updateResponse.EnsureSuccessStatusCode();
@@ -73,21 +73,21 @@ public class StudentManagementSteps
     {
         List<StudentDto> studentResponse = _driver.GetAllStudents();
 
-        Assert.Equal(studentResponse?.Count, int.Parse(numberOfStudents));
+        Assert.Equal(int.Parse(numberOfStudents), studentResponse?.Count);
 
         var expectedStudentResponse = _driver.ParseCreateStudentData(expectedStudent);
-        Assert.Equal(studentResponse[0].FirstName, expectedStudentResponse.FirstName);
-        Assert.Equal(studentResponse[0].LastName, expectedStudentResponse.LastName);
-        Assert.Equal(studentResponse[0].Email.Value, expectedStudentResponse.Email.Value);
-        Assert.Equal(studentResponse[0].BirthDate, expectedStudentResponse.BirthDate);
-        Assert.Equal(studentResponse[0].GitHubUsername, expectedStudentResponse.GitHubUsername);
+        Assert.Equal(expectedStudentResponse.FirstName, studentResponse[0].FirstName);
+        Assert.Equal(expectedStudentResponse.LastName, studentResponse[0].LastName);
+        Assert.Equal(expectedStudentResponse.Email.Value, studentResponse[0].Email.Value);
+        Assert.Equal(expectedStudentResponse.BirthDate, studentResponse[0].BirthDate);
+        Assert.Equal(expectedStudentResponse.GitHubUsername, studentResponse[0].GitHubUsername);
     }
 
     [When(@"user deletes student by Email of ""(.*)""")]
     public void WhenUserDeleteTheStudent(string email)
     {
         List<StudentDto> studentResponse = _driver.GetAllStudents();
-        Assert.Equal(studentResponse[0].Email.Value, email);
+        Assert.Equal(email, studentResponse[0].Email.Value);
 
         HttpResponseMessage deleteResponse = _driver.DeleteStudent(studentResponse[0].Id);
         deleteResponse.EnsureSuccessStatusCode();
@@ -97,6 +97,6 @@ public class StudentManagementSteps
     public void ThenUserQueryToGetAllStudents(string numberOfStudents)
     {
         List<StudentDto> studentResponse = _driver.GetAllStudents();
-        Assert.Equal(studentResponse?.Count, int.Parse(numberOfStudents));
+        Assert.Equal(int.Parse(numberOfStudents), studentResponse?.Count);
     }
 }
