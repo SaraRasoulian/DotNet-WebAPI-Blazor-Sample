@@ -1,0 +1,100 @@
+﻿@page "/students"
+@inject StudentService studentService
+
+<PageTitle>Students</PageTitle>
+@if (studentList is not null)
+{
+    <div class="content-container noselect">
+        <div class="title-wrapper parent-page-title">
+            <div class="list-title">
+                <h4>Students</h4>
+                <div class="list-total">
+                    <span>@studentList.Count()</span>
+                    <span>total</span>
+                </div>
+            </div>
+            <div class="right-button-wrapper">
+                <NavLink href="/students/add" class="btn btn-save btn-add">
+                    <img src="images/add.svg" class="add-icon" alt="">
+                    <span class="add-text">Add</span>
+                </NavLink>
+            </div>
+        </div>
+
+        <hr class="line" />
+
+        <div class="content">
+            <!--list header-->
+            <div class="list-header">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <span>First Name</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <span>Last Name</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <span>Email</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <span>BirthDate</span>
+                    </div>
+                </div>
+                <div class="control-header">
+                    <span>Controls</span>
+                </div>
+            </div>
+
+            <!--list items-->
+            @foreach (var item in studentList)
+            {
+                <div class="list-item">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <span>@item.FirstName</span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <span>@item.LastName</span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <p class="truncated">
+                                @item.Email.Value
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <span>@item.BirthDate</span>
+                        </div>
+                    </div>
+                    <div class="buttons-wrapper">
+                        <NavLink href="@($"/students/view/{item.Id}")" class="list-button" data-toggle="tooltip" data-placement="top"
+                                 title="View">
+                            <img src="images/view.png" class="list-button-icon" alt="">
+                        </NavLink>
+                        <NavLink href="@($"/students/edit/{item.Id}")" class="list-button" data-toggle="tooltip" data-placement="top"
+                                 title="Edit">
+                            <img src="images/edit.svg" class="list-button-icon" alt="">
+                        </NavLink>
+                        <NavLink href="@($"/students/delete/{item.Id}")" class="list-button" data-toggle="tooltip"
+                                 data-placement="top" title="Delete">
+                            <img src="images/delete.svg" class="list-button-icon" alt="">
+                        </NavLink>
+                    </div>
+                </div>
+                <hr class="line" />
+            }
+        </div>
+    </div>
+}
+else
+{
+    <Spinner Class="me-3" Type="SpinnerType.Dots" Color="SpinnerColor.Secondary" />
+}
+
+@code {
+    private StudentDto[] studentList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        studentList = await studentService.GetAll();
+    }
+}
