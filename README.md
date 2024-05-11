@@ -37,7 +37,7 @@ This repository is intended for demonstrating best practices in software develop
 
 
       
-## Get started
+## Run with docker
 
 #### 1. Start with docker compose
 
