@@ -1,5 +1,5 @@
 ## Student Management Application
-A sample full-stack application with a backend ASP.NET Core Web API project and a frontend Blazor Web Assembly project.
+A sample full-stack application with a backend __ASP.NET Core Web API__ project and a frontend __Blazor Web Assembly__ project.
 
 ![Student-](https://github.com/SaraRasoulian/DotNet-WebAPI-Blazor-Sample/assets/51083712/8a385730-3a8c-4444-82a2-c329d06c19df)
 
@@ -36,9 +36,9 @@ This repository is intended for demonstrating best practices in software develop
 
 
       
-## Run with docker
+## Run with Docker
 
-#### 1. Start with docker compose
+#### 1. Start with Docker compose
 
 Run the following command in project directory:
 
@@ -66,3 +66,9 @@ update-database
 ```
 
 This command will generate the database schema in postgres container.
+
+
+---
+
+Make sure Docker engine is running, before running integration and acceptance tests.
+
