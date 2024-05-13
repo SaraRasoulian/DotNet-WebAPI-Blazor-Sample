@@ -48,13 +48,13 @@ docker-compose up -d
 
 Docker compose in this application includes 4 services:
 
-- Web API application will be listening at `http://localhost:5000`
+- __Web API application__ will be listening at `http://localhost:5000`
 
-- Blazor webAssembly application will be listening at `http://localhost:8080`
+- __Blazor webAssembly application__ will be listening at `http://localhost:8080`
 
-- Postgres database will be listening at `http://localhost:5433`
+- __Postgres database__ will be listening at `http://localhost:5433`
 
-- PgAdmin4 web interface will be listening at `http://localhost:8000`
+- __PgAdmin4 web interface__ will be listening at `http://localhost:8000`
 
 
 #### 2. Run the migrations
