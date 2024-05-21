@@ -1,7 +1,7 @@
 ## Student Management Application
-A sample full-stack application with a backend ASP.NET Core Web API project and a frontend Blazor Web Assembly project.
+A sample full-stack application with a backend __ASP.NET Core Web API__ project and a frontend __Blazor Web Assembly__ project.
 
-![Student-](https://github.com/SaraRasoulian/DotNet-WebAPI-Blazor-Sample/assets/51083712/8a385730-3a8c-4444-82a2-c329d06c19df)
+![Student-M](https://github.com/SaraRasoulian/DotNet-WebAPI-Blazor-Sample/assets/51083712/6a1cb0b0-6de0-4fd8-91fc-02a3ce6bba04)
 
 
 ## Technology Stack
@@ -36,9 +36,9 @@ This repository is intended for demonstrating best practices in software develop
 
 
       
-## Run with docker
+## Run with Docker
 
-#### 1. Start with docker compose
+#### 1. Start with Docker compose
 
 Run the following command in project directory:
 
@@ -48,13 +48,13 @@ docker-compose up -d
 
 Docker compose in this application includes 4 services:
 
-- Web API application will be listening at `http://localhost:5000`
+- __Web API application__ will be listening at `http://localhost:5000`
 
-- Blazor webAssembly application will be listening at `http://localhost:8080`
+- __Blazor webAssembly application__ will be listening at `http://localhost:8080`
 
-- Postgres database will be listening at `http://localhost:5433`
+- __Postgres database__ will be listening at `http://localhost:5433`
 
-- PgAdmin4 web interface will be listening at `http://localhost:8000`
+- __PgAdmin4 web interface__ will be listening at `http://localhost:8000`
 
 
 #### 2. Run the migrations
@@ -66,3 +66,9 @@ update-database
 ```
 
 This command will generate the database schema in postgres container.
+
+
+---
+
+Make sure Docker engine is running, before running integration and acceptance tests.
+
