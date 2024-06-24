@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Domain.ValueObjects;
 using Domain.Entities;
+using Application.Consts;
 
 namespace Infrastructure.Configurations;
 
@@ -12,18 +13,18 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.FirstName)
-            .HasMaxLength(DataSchemaConstants.NameMaxLength)
+            .HasMaxLength(StudentConsts.NameMaxLength)
             .IsRequired();
 
         builder.Property(x => x.LastName)
-            .HasMaxLength(DataSchemaConstants.NameMaxLength)
+            .HasMaxLength(StudentConsts.NameMaxLength)
             .IsRequired();
 
         builder.Property(x => x.Email)
             .HasConversion(
             e => e.Value,
             value => new Email(value))
-                    .HasMaxLength(DataSchemaConstants.EmailMaxLength)
+                    .HasMaxLength(StudentConsts.EmailMaxLength)
                     .IsRequired();
 
         builder.HasIndex(x => x.Email)
@@ -33,7 +34,7 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
                     .IsRequired();
 
         builder.Property(x => x.GitHubUsername)
-            .HasMaxLength(DataSchemaConstants.UsernameMaxLength)
+            .HasMaxLength(StudentConsts.UsernameMaxLength)
             .IsRequired();
 
         builder.HasIndex(x => x.GitHubUsername)

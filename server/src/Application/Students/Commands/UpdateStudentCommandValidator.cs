@@ -1,6 +1,7 @@
 ﻿using Domain.ValueObjects;
 using Domain.Interfaces;
 using FluentValidation;
+using Application.Consts;
 
 namespace Application.Students.Commands;
 
@@ -19,14 +20,14 @@ public sealed class UpdateStudentCommandValidator : AbstractValidator<UpdateStud
         RuleFor(v => v.FirstName)
            .NotEmpty()
            .NotNull()
-           .MaximumLength(50)
-           .MinimumLength(2);
+           .MaximumLength(StudentConsts.NameMaxLength)
+           .MinimumLength(StudentConsts.NameMinLength);
 
         RuleFor(v => v.LastName)
             .NotEmpty()
             .NotNull()
-            .MaximumLength(50)
-            .MinimumLength(2);
+            .MaximumLength(StudentConsts.NameMaxLength)
+            .MinimumLength(StudentConsts.NameMinLength);
 
         RuleFor(v => v.Email)
                 .MustAsync(IsEmailUnique)
@@ -40,8 +41,8 @@ public sealed class UpdateStudentCommandValidator : AbstractValidator<UpdateStud
         RuleFor(v => v.GitHubUsername)
             .NotEmpty()
             .NotNull()
-            .MinimumLength(3)
-            .MaximumLength(40)
+            .MaximumLength(StudentConsts.UsernameMaxLength)
+            .MinimumLength(StudentConsts.UsernameMinLength)
             .MustAsync(IsGitHubUsernameUnique)
                 .WithMessage("'{PropertyName}' must be unique.")
                     .WithErrorCode("Unique");
